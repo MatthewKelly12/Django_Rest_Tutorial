@@ -1,0 +1,5 @@
+# GETTING STARTED WITH DJANGO REST FRAMEWORK
+
+## 1. INSTALL DJANGO REST FRAMEWORK
+	pip install djangorestframework
+
