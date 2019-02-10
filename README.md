@@ -30,13 +30,13 @@ In beer_api/settings.py scroll down until you see the following code
     	'django.contrib.staticfiles',
 	]
 
-Now add rest_framework and your apps with the following code
-Be sure to add a comma between apps
+Now add rest_framework and your apps with the following code. Be sure to add a comma between apps
 
 	'rest_framework',
 	'beer'
 
 The Installed Apps should now look like this
+
 	INSTALLED_APPS = [
     	'django.contrib.admin',
     	'django.contrib.auth',
