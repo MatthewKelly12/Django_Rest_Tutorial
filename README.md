@@ -61,5 +61,21 @@ Copy the following code beneath
 		def __str__(self):
 			return self.name
 
+### 9.	Create A Serializer for your model
+First we need to make serializer file. From your command line cd into the dogs directory.
 
+	cd dogs
 
+Create the serializer file.
+
+	touch serializer.py
+
+Now we need to import serializers, our model, and create a class serlializer from our model. In your text editor,copy the following code to your serializer.py file.
+
+	from rest_framework import serializers
+	from .models import Breed
+
+	class TypesSerializer(serializers.HyperlinkedModelSerializer):
+    	class Meta:
+        	model = Types
+        	fields = ('id', 'url', 'name')
