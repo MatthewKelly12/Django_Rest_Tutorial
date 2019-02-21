@@ -61,7 +61,7 @@ Copy the following code beneath
 		def __str__(self):
 			return self.name
 
-### 9.	Create A Serializer for your model
+### 9.	Create A Serializer For Your Model
 First we need to make serializer file. From your command line cd into the dogs directory.
 
 	cd dogs
@@ -79,3 +79,19 @@ Now we need to import serializers, our model, and create a class serlializer fro
     	class Meta:
         	model = Breed
         	fields = ('id', 'url', 'name')
+
+### 10.	Create A View For Model
+We're using viewsets for this example so we need to import viewsets along with our model and serializer, and then create our the view. In the directory dogs/views.py, you'll see the following code.
+
+	from django.shortcuts import render
+
+Copy the following code beneath
+
+	from rest_framework import viewsets
+	from .models import Breed
+	from .serializers import BreedSerializer
+
+	class TypesView(viewsets.ModelViewSet):
+    	queryset = Types.objects.all()
+    	serializer_class = TypesSerializer
+
