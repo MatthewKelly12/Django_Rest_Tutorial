@@ -171,7 +171,7 @@ Copy the following code beneath your Breed model
 
 	class Dog(models.Model):
     	name = models.CharField(max_length=50)
-    	types = models.ForeignKey(Breed, on_delete=models.CASCADE)
+    	breed = models.ForeignKey(Breed, on_delete=models.CASCADE)
 
     	def __str__(self):
         	return self.name
