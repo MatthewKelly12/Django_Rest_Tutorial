@@ -4,22 +4,22 @@
 	pip install djangorestframework
 
 ### 2. Start Django Project
-	django-admin startproject beer_api
+	django-admin startproject dogs_api
 
 ### 3. 	Go Into Project Directory
-	cd beer_api
+	cd dogs_api
 
 ### 4. 	Migrate Existing Models
 	python manage.py migrate
 
 ### 5.	Create The App
-	python manage.py startapp beer
+	python manage.py startapp dogs
 
 ### 6. 	Open In Text Editor
 	code .
 
 ### 7.	Add Apps to Installed Apps in settings
-In beer_api/settings.py scroll down until you see the following code
+In dogs_api/settings.py scroll down until you see the following code
 
 	INSTALLED_APPS = [
     	'django.contrib.admin',
@@ -33,7 +33,7 @@ In beer_api/settings.py scroll down until you see the following code
 Now add rest_framework and your apps with the following code. Be sure to add a comma between apps
 
 	'rest_framework',
-	'beer'
+	'dogs'
 
 The Installed Apps should now look like this
 
@@ -45,7 +45,21 @@ The Installed Apps should now look like this
     	'django.contrib.messages',
     	'django.contrib.staticfiles',
 		'rest_framework',
-		'beer'
+		'dogs'
 	]
+
+### 8.	Create A Model
+In the directory dogs/models.py, you'll see
+
+	from django.db import models
+
+Copy the following code beneath
+
+	class Breed(models.Model):
+		name = models.CharField(max_length=100)
+
+		def __str__(self):
+			return self.name
+
 
 
