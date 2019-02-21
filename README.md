@@ -70,7 +70,7 @@ Create the serializer file.
 
 	touch serializer.py
 
-Now we need to import serializers, our model, and create a class serlializer from our model. In your text editor,copy the following code to your serializer.py file.
+Now we need to import serializers, our model, and create a class serlializer from our model. In your text editor,copy the following code to your dog/serializer.py file.
 
 	from rest_framework import serializers
 	from .models import Breed
@@ -91,7 +91,44 @@ Copy the following code beneath
 	from .models import Breed
 	from .serializers import BreedSerializer
 
-	class TypesView(viewsets.ModelViewSet):
-    	queryset = Types.objects.all()
-    	serializer_class = TypesSerializer
+	class BreedView(viewsets.ModelViewSet):
+    	queryset = Breed.objects.all()
+    	serializer_class = BreedSerializer
+
+### 11.	Create A URL And Router For The View
+First we need to make urls.py file. From your command line cd into the dogs directory.
+
+	cd dogs
+
+Create the urls file.
+
+	touch urls.py
+
+Now we need to import our views, routers, path, and include.
+In your text editor, go to dogs/urls.py and copy the following code.
+
+	from django.urls import path, include
+	from . import views
+	from rest_framework import routers
+
+	router = routers.DefaultRouter()
+	router.register('pets', views.BreedView)
+
+	urlpatterns = [
+    	path('', include(router.urls))
+	]
+
+### 12.	Make Migrations And Migrate Models
+From the command line, in the root directory copy the following code to make migrations with the model.
+
+	python manage.py makemigrations
+
+Now migrate the model.
+
+	python manage.py migrate
+
+### 13.	Runserver
+From the command line, type the following code to run the server
+
+	python manage.py runserver
 
