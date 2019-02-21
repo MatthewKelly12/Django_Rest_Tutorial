@@ -75,7 +75,7 @@ Now we need to import serializers, our model, and create a class serlializer fro
 	from rest_framework import serializers
 	from .models import Breed
 
-	class TypesSerializer(serializers.HyperlinkedModelSerializer):
+	class BreedSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
-        	model = Types
+        	model = Breed
         	fields = ('id', 'url', 'name')
