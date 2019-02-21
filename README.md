@@ -140,7 +140,7 @@ In your text editor, go to dogs/urls.py and copy the following code.
 	from rest_framework import routers
 
 	router = routers.DefaultRouter()
-	router.register('pets', views.BreedView)
+	router.register('breeds', views.BreedView)
 
 	urlpatterns = [
     	path('', include(router.urls))
@@ -169,9 +169,9 @@ In the directory dogs/models.py
 
 Copy the following code beneath your Breed model
 
-	class Dogs(models.Model):
+	class Dog(models.Model):
     	name = models.CharField(max_length=50)
-    	types = models.ForeignKey(Types, on_delete=models.CASCADE)
+    	types = models.ForeignKey(Breed, on_delete=models.CASCADE)
 
     	def __str__(self):
         	return self.name
@@ -208,7 +208,7 @@ Now create the Dog serializer.
 Your dog/serializers.py file should now contain the following code.
 
 	from rest_framework import serializers
-	from .models import Breed
+	from .models import Breed, Dog
 
 	class BreedSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
@@ -226,9 +226,9 @@ In the dogs/views.py file, we need to import Dog from .models, DogSerializer fro
 	from .models import Breed, Dog
 	from .serializers import BreedSerializer, DogSerializer
 
-	class PetsView(viewsets.ModelViewSet):
-    	queryset = Pets.objects.all()
-    	serializer_class = PetsSerializer
+	class DogView(viewsets.ModelViewSet):
+    	queryset = Dog.objects.all()
+    	serializer_class = DogSerializer
 
 
 The dogs/views.py file should now contain the following code.
@@ -241,14 +241,14 @@ The dogs/views.py file should now contain the following code.
     	queryset = Breed.objects.all()
     	serializer_class = BreedSerializer
 
-	class PetsView(viewsets.ModelViewSet):
-    	queryset = Pets.objects.all()
-    	serializer_class = PetsSerializer
+	class DogView(viewsets.ModelViewSet):
+    	queryset = Dog.objects.all()
+    	serializer_class = DogSerializer
 
 ### Create URL For One To Many View
 In the dogs/urls.py file, add route for DogView
 
-	router.register('pets', views.DogView)
+	router.register('dogs', views.DogView)
 
 The dogs/urls.py file should now contain the following code.
 
@@ -257,8 +257,8 @@ The dogs/urls.py file should now contain the following code.
 		from rest_framework import routers
 
 		router = routers.DefaultRouter()
-		router.register('pets', views.BreedView)
-		router.register('pets', views.DogView)
+		router.register('breeds', views.BreedView)
+		router.register('dogs', views.DogView)
 
 		urlpatterns = [
     		path('', include(router.urls))
@@ -272,6 +272,7 @@ From the command line, in the root directory copy the following code to make mig
 Now migrate the model.
 
 	python manage.py migrate
+
 ### Run The Server
 From the command line, type the following code to run the server
 
