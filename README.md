@@ -1,24 +1,24 @@
 # GETTING STARTED WITH DJANGO REST FRAMEWORK
 
-### 1. Install Django Rest Framework
+### Install Django Rest Framework
 	pip install djangorestframework
 
-### 2. Start Django Project
+### Start Django Project
 	django-admin startproject dogs_api
 
-### 3. 	Go Into Project Directory
+### Go Into Project Directory
 	cd dogs_api
 
-### 4. 	Migrate Existing Models
+### Migrate Existing Models
 	python manage.py migrate
 
-### 5.	Create The App
+### Create The App
 	python manage.py startapp dogs
 
-### 6. 	Open In Text Editor
+### Open In Text Editor
 	code .
 
-### 7.	Add Apps to Installed Apps in settings
+### Add Apps to Installed Apps in Project Settings
 In dogs_api/settings.py scroll down until you see the following code
 
 	INSTALLED_APPS = [
@@ -48,7 +48,35 @@ The Installed Apps should now look like this
 		'dogs'
 	]
 
-### 8.	Create A Model
+### Edit URLS In Project
+In dogs_api/urls.py, you'll see the following code.
+
+	from django.contrib import admin
+	from django.urls import path
+
+	urlpatterns = [
+    	path('admin/', admin.site.urls),
+	]
+
+Now we need to include our path and import include. We're already importing django.urls so we can just add a comma after path.
+
+	from django.urls import include	path, include
+
+Now add the following path to the urls. Be sure to add a comma between paths.
+
+	path('', include('dogs.urls'))
+
+Your dogs_api/urls.py file should now contain the following code.
+
+	from django.contrib import admin
+	from django.urls import path, include
+
+	urlpatterns = [
+    	path('admin/', admin.site.urls),
+		path('', include('dogs.urls'))
+	]
+
+### Create A Model
 In the directory dogs/models.py, you'll see
 
 	from django.db import models
@@ -61,14 +89,14 @@ Copy the following code beneath
 		def __str__(self):
 			return self.name
 
-### 9.	Create A Serializer For Your Model
-First we need to make serializer file. From your command line cd into the dogs directory.
+### Create A Serializer For Your Model
+First we need to make serializers file. From your command line cd into the dogs directory.
 
 	cd dogs
 
-Create the serializer file.
+Create the serializers file.
 
-	touch serializer.py
+	touch serializers.py
 
 Now we need to import serializers, our model, and create a class serlializer from our model. In your text editor,copy the following code to your dog/serializer.py file.
 
@@ -80,7 +108,7 @@ Now we need to import serializers, our model, and create a class serlializer fro
         	model = Breed
         	fields = ('id', 'url', 'name')
 
-### 10.	Create A View For Model
+### Create A View For Model
 We're using viewsets for this example so we need to import viewsets along with our model and serializer, and then create our the view. In the directory dogs/views.py, you'll see the following code.
 
 	from django.shortcuts import render
@@ -95,7 +123,7 @@ Copy the following code beneath
     	queryset = Breed.objects.all()
     	serializer_class = BreedSerializer
 
-### 11.	Create A URL And Router For The View
+### Create A URL And Router For The View
 First we need to make urls.py file. From your command line cd into the dogs directory.
 
 	cd dogs
@@ -118,7 +146,7 @@ In your text editor, go to dogs/urls.py and copy the following code.
     	path('', include(router.urls))
 	]
 
-### 12.	Make Migrations And Migrate Models
+### Make Migrations And Migrate Models
 From the command line, in the root directory copy the following code to make migrations with the model.
 
 	python manage.py makemigrations
@@ -127,7 +155,7 @@ Now migrate the model.
 
 	python manage.py migrate
 
-### 13.	Runserver
+### Runserver
 From the command line, type the following code to run the server
 
 	python manage.py runserver
