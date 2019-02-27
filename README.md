@@ -281,4 +281,6 @@ From the command line, type the following code to run the server
 The server should now be running on port http://127.0.0.1:8000/. Click on the link and your Django Rest API should be up and running.
 
 ### Add Dogs
-### Create A Model With A Many To Many Relationship
+### Create A Model, View, and Serializer With A Many To Many Relationship
+
+
