@@ -273,13 +273,14 @@ From the command line, type the following code to run the server
 The server should now be running on port http://127.0.0.1:8000/. Click on the link and your Django Rest API should be up and running.
 
 ### Add Dogs
-### Create A Model, View, and Serializer With A Many To Many Relationship
+### Create A Model With A Many To Many Relationship
 
 In the directory dogs/models.py, we'll create an Owner model that will have a Many To Many relationship with Dogs. Yes, dogs can have many owners and many owners could own many dogs.
 
 Copy the following code beneath your Dog model.
 
 	class Owner(models.Model):
+
     	name = models.CharField(max_length=50)
     	dog = models.ManyToManyField(Dog)
 
@@ -309,3 +310,32 @@ Your dogs/models.py file should now contain the following code.
 
     	def __str__(self):
         	return self.name
+
+###	Create Serializer For One To Many Relationship
+In dog/serializers.py file, we need to import Owner from .models and create our Owner serializer. We're already importing from .models so we can just add a comma after Dog.
+
+Your dog/serializers.py file should now contain the following code.
+
+	from rest_framework import serializers
+	from .models import Breed, Dog, Owner
+
+	class BreedSerializer(serializers.HyperlinkedModelSerializer):
+    	class Meta:
+        	model = Breed
+        	fields = ('id', 'url', 'name')
+
+	class DogSerializer(serializers.HyperlinkedModelSerializer):
+    	class Meta:
+        	model = Dog
+        	fields = ('id', 'url', 'name', 'breed')
+
+
+	class OwnerSerializer(serializers.HyperlinkedModelSerializer):
+    	class Meta:
+        	model = Owner
+        	fields = ('id', 'url', 'name', 'dog')
+
+### Create View For One To Many Model
+In the dogs/views.py file, we need to import Owner from .models, OwnerSerializer from .seriailzers, and create a OwnerView.
+
+The dogs/views.py file should now contain the following code.
