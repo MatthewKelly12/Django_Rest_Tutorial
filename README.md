@@ -321,17 +321,20 @@ Your dog/serializers.py file should now contain the following code.
 
 	class BreedSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
+
         	model = Breed
         	fields = ('id', 'url', 'name')
 
 	class DogSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
+
         	model = Dog
         	fields = ('id', 'url', 'name', 'breed')
 
 
 	class OwnerSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
+
         	model = Owner
         	fields = ('id', 'url', 'name', 'dog')
 
