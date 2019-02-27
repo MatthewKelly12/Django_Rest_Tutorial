@@ -165,7 +165,7 @@ The server should now be running on port http://127.0.0.1:8000/. Click on the li
 ### Add Breeds of Dogs
 
 ### Create A Model With A One To Many Relationship
-In the directory dogs/models.py
+In the directory dogs/models.py, we'll create a Dog model that will have Breed as a Foreign Key.
 
 Copy the following code beneath your Breed model
 
@@ -223,14 +223,6 @@ Your dog/serializers.py file should now contain the following code.
 ### Create View For One To Many Model
 In the dogs/views.py file, we need to import Dog from .models, DogSerializer from .seriailzers, and create a DogView.
 
-	from .models import Breed, Dog
-	from .serializers import BreedSerializer, DogSerializer
-
-	class DogView(viewsets.ModelViewSet):
-    	queryset = Dog.objects.all()
-    	serializer_class = DogSerializer
-
-
 The dogs/views.py file should now contain the following code.
 
 	from rest_framework import viewsets
@@ -283,4 +275,37 @@ The server should now be running on port http://127.0.0.1:8000/. Click on the li
 ### Add Dogs
 ### Create A Model, View, and Serializer With A Many To Many Relationship
 
+In the directory dogs/models.py, we'll create an Owner model that will have a Many To Many relationship with Dogs. Yes, dogs can have many owners and many owners could own many dogs.
 
+Copy the following code beneath your Dog model.
+
+	class Owner(models.Model):
+    	name = models.CharField(max_length=50)
+    	dog = models.ManyToManyField(Dog)
+
+    	def __str__(self):
+        	return self.name
+
+Your dogs/models.py file should now contain the following code.
+
+	from django.db import models
+
+	class Breed(models.Model):
+		name = models.CharField(max_length=100)
+
+		def __str__(self):
+			return self.name
+
+	class Dog(models.Model):
+    	name = models.CharField(max_length=100)
+    	breed = models.ForeignKey(Breed, on_delete=models.CASCADE)
+
+    	def __str__(self):
+        	return self.name
+
+	class Owner(models.Model):
+    	name = models.CharField(max_length=100)
+    	dog = models.ManyToManyField(Dog)
+
+    	def __str__(self):
+        	return self.name
