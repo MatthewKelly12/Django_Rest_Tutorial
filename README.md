@@ -311,7 +311,7 @@ Your dogs/models.py file should now contain the following code.
     	def __str__(self):
         	return self.name
 
-###	Create Serializer For One To Many Relationship
+###	Create Serializer For Many To Many Relationship
 In dog/serializers.py file, we need to import Owner from .models and create our Owner serializer. We're already importing from .models so we can just add a comma after Dog.
 
 Your dog/serializers.py file should now contain the following code.
@@ -321,24 +321,73 @@ Your dog/serializers.py file should now contain the following code.
 
 	class BreedSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
-
         	model = Breed
         	fields = ('id', 'url', 'name')
 
 	class DogSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
-
         	model = Dog
         	fields = ('id', 'url', 'name', 'breed')
 
 
 	class OwnerSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
-
         	model = Owner
         	fields = ('id', 'url', 'name', 'dog')
 
-### Create View For One To Many Model
-In the dogs/views.py file, we need to import Owner from .models, OwnerSerializer from .seriailzers, and create a OwnerView.
+### Create View For Many To Many Model
+In the dogs/views.py file, we need to import Owner from .models, OwnerSerializer from .seriailzers, and create an OwnerView.
 
 The dogs/views.py file should now contain the following code.
+
+	from rest_framework import viewsets
+	from .models import Breed, Dog
+	from .serializers import BreedSerializer, DogSerializer, OwnerSerializer
+
+	class BreedView(viewsets.ModelViewSet):
+    	queryset = Breed.objects.all()
+    	serializer_class = BreedSerializer
+
+	class DogView(viewsets.ModelViewSet):
+    	queryset = Dog.objects.all()
+    	serializer_class = DogSerializer
+
+	class OwnersView(viewsets.ModelViewSet):
+    	queryset = Owners.objects.all()
+    	serializer_class = OwnersSerializer
+
+### Create URL For Many To Many View
+In the dogs/urls.py file, add route for OwnerView
+
+	router.register('owners', views.OwnerView)
+
+The dogs/urls.py file should now contain the following code.
+
+		from django.urls import path, include
+		from . import views
+		from rest_framework import routers
+
+		router = routers.DefaultRouter()
+		router.register('breeds', views.BreedView)
+		router.register('dogs', views.DogView)
+		router.register('owners', views.OwnerView)
+
+		urlpatterns = [
+    		path('', include(router.urls))
+		]
+
+### Make Migrations And Migrate Models
+From the command line, in the root directory copy the following code to make migrations with the model. If the server is still running, stop it and type the following code.
+
+	python manage.py makemigrations
+
+Now migrate the model.
+
+	python manage.py migrate
+
+### Run The Server
+From the command line, type the following code to run the server
+
+	python manage.py runserver
+
+The server should now be running on port http://127.0.0.1:8000/. Click on the link and your Django Rest API should be up and running.
