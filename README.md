@@ -174,7 +174,7 @@ Copy the following code beneath your Breed model
     	breed = models.ForeignKey(Breed, on_delete=models.CASCADE)
 
     	def __str__(self):
-        	return self.name
+			return self.name
 
 Your dogs/models.py file should now contain the following code.
 
@@ -191,7 +191,7 @@ Your dogs/models.py file should now contain the following code.
     	breed = models.ForeignKey(Breed, on_delete=models.CASCADE)
 
     	def __str__(self):
-        	return self.name
+			return self.name
 
 ###	Create Serializer For One To Many Relationship
 In dog/serializers.py file, we need to import Dog from .models and create our Dog serializer. We're already importing from .models so we can just add a comma after Breed.
@@ -285,7 +285,7 @@ Copy the following code beneath your Dog model.
     	dog = models.ManyToManyField(Dog)
 
     	def __str__(self):
-        	return self.name
+			return self.name
 
 Your dogs/models.py file should now contain the following code.
 
