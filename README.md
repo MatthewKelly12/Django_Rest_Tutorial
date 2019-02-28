@@ -209,7 +209,8 @@ Now create the Dog serializer.
 	class DogSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
         	model = Dog
-        	fields = ('id', 'url', 'name', 'breed')
+			fields = ('id', 'url', 'name', 'breed')
+
 
 Your dog/serializers.py file should now contain the following code.
 
@@ -218,13 +219,13 @@ Your dog/serializers.py file should now contain the following code.
 
 	class BreedSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
-        	model = Breed
-        	fields = ('id', 'url', 'name')
+			model = Breed
+			fields = ('id', 'url', 'name')
 
 	class DogSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
         	model = Dog
-        	fields = ('id', 'url', 'name', 'breed')
+			fields = ('id', 'url', 'name', 'breed')
 
 ### Create View For One To Many Model
 In the dogs/views.py file, we need to import Dog from .models, DogSerializer from .seriailzers, and create a DogView.
@@ -286,7 +287,6 @@ In the directory dogs/models.py, we'll create an Owner model that will have a Ma
 Copy the following code beneath your Dog model.
 
 	class Owner(models.Model):
-
     	name = models.CharField(max_length=50)
     	dog = models.ManyToManyField(Dog)
 
@@ -327,19 +327,19 @@ Your dog/serializers.py file should now contain the following code.
 
 	class BreedSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
-        	model = Breed
-        	fields = ('id', 'url', 'name')
+			model = Breed
+			fields = ('id', 'url', 'name')
 
 	class DogSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
         	model = Dog
-        	fields = ('id', 'url', 'name', 'breed')
+			fields = ('id', 'url', 'name', 'breed')
 
 
 	class OwnerSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
-        	model = Owner
-        	fields = ('id', 'url', 'name', 'dog')
+			model = Owner
+			fields = ('id', 'url', 'name', 'dog')
 
 ### Create View For Many To Many Model
 In the dogs/views.py file, we need to import Owner from .models, OwnerSerializer from .seriailzers, and create an OwnerView.
@@ -347,7 +347,7 @@ In the dogs/views.py file, we need to import Owner from .models, OwnerSerializer
 The dogs/views.py file should now contain the following code.
 
 	from rest_framework import viewsets
-	from .models import Breed, Dog
+	from .models import Breed, Dog, Owner
 	from .serializers import BreedSerializer, DogSerializer, OwnerSerializer
 
 	class BreedView(viewsets.ModelViewSet):
@@ -358,9 +358,9 @@ The dogs/views.py file should now contain the following code.
     	queryset = Dog.objects.all()
     	serializer_class = DogSerializer
 
-	class OwnersView(viewsets.ModelViewSet):
-    	queryset = Owners.objects.all()
-    	serializer_class = OwnersSerializer
+	class OwnerView(viewsets.ModelViewSet):
+    	queryset = Owner.objects.all()
+    	serializer_class = OwnerSerializer
 
 ### Create URL For Many To Many View
 In the dogs/urls.py file, add route for OwnerView
@@ -397,3 +397,5 @@ From the command line, type the following code to run the server
 	python manage.py runserver
 
 The server should now be running on port http://127.0.0.1:8000/. Click on the link and your Django Rest API should be up and running.
+
+### Add Owners
