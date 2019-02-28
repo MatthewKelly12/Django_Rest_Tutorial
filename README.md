@@ -208,7 +208,7 @@ Now create the Dog serializer.
 
 	class DogSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
-        	model = Dog
+			model = Dog
 			fields = ('id', 'url', 'name', 'breed')
 
 
@@ -224,7 +224,7 @@ Your dog/serializers.py file should now contain the following code.
 
 	class DogSerializer(serializers.HyperlinkedModelSerializer):
     	class Meta:
-        	model = Dog
+			model = Dog
 			fields = ('id', 'url', 'name', 'breed')
 
 ### Create View For One To Many Model
