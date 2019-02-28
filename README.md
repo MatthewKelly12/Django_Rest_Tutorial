@@ -1,4 +1,9 @@
-# GETTING STARTED WITH DJANGO REST FRAMEWORK
+# Getting Started With Django Rest Framework
+
+###	Requirements
+Python
+Pip
+Django
 
 ### Install Django Rest Framework
 	pip install djangorestframework
@@ -15,7 +20,19 @@
 ### Create The App
 	python manage.py startapp dogs
 
+### Create Files For URL's and Serializers
+
+First we need to make files for the serializers and urls. From your command line go into the dogs directory.
+
+	cd dogs
+
+Create the serializers file and the urls file.
+
+	touch serializers.py urls.py
+
 ### Open In Text Editor
+To open in VS Code type the following in your command line.
+
 	code .
 
 ### Add Apps to Installed Apps in Project Settings
@@ -76,12 +93,15 @@ Now your dogs_api/urls.py file should now contain the following code.
 		path('', include('dogs.urls'))
 	]
 
+
 ### Create A Model
 In the directory dogs/models.py, you'll see
 
 	from django.db import models
 
-Copy the following code beneath
+Create a model for Breed. The dogs/models.py should now contain the following code.
+
+	from django.db import models
 
 	class Breed(models.Model):
 		name = models.CharField(max_length=100)
@@ -90,13 +110,6 @@ Copy the following code beneath
 			return self.name
 
 ### Create A Serializer For Your Model
-First we need to make serializers file. From your command line cd into the dogs directory.
-
-	cd dogs
-
-Create the serializers file.
-
-	touch serializers.py
 
 Now we need to import serializers, our model, and create a class serlializer from our model. In your text editor,copy the following code to your dog/serializer.py file.
 
@@ -104,9 +117,9 @@ Now we need to import serializers, our model, and create a class serlializer fro
 	from .models import Breed
 
 	class BreedSerializer(serializers.HyperlinkedModelSerializer):
-    	class Meta:
-        	model = Breed
-        	fields = ('id', 'url', 'name')
+		class Meta:
+			model = Breed
+			fields = ('id', 'url', 'name')
 
 ### Create A View For Model
 We're using viewsets for this example so we need to import viewsets along with our model and serializer, and then create our the view. In the directory dogs/views.py, you'll see the following code.
@@ -124,13 +137,6 @@ Copy the following code beneath
     	serializer_class = BreedSerializer
 
 ### Create A URL And Router For The View
-First we need to make urls.py file. From your command line cd into the dogs directory.
-
-	cd dogs
-
-Create the urls file.
-
-	touch urls.py
 
 Now we need to import our views, routers, path, and include.
 In your text editor, go to dogs/urls.py and copy the following code.
