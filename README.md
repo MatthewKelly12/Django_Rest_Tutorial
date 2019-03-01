@@ -301,9 +301,17 @@ Now you'll see clickable url's to breeds and dogs.
 
 <img src='breed_and_dogs.png'>
 
+Click on dogs and you'll see an empty list. Now when you add a dog, not only do you have to give it a name but you also have to select a breed from the input choices. This is because of the ForeignKey model relationship between Breed and Dog. Add some dogs.
+
 <img src='karma_pitbull.png'>
 
+Now your list of dogs should look like this.
+
 <img src='dog_list.png'>
+
+Click on the url for any dog.
+
+<img src='dog.png'>
 
 ### Create A Model With A Many To Many Relationship
 
