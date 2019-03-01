@@ -170,9 +170,9 @@ The server should now be running on port http://127.0.0.1:8000/. Click on the li
 
 ### Add Breeds of Dogs
 
-<img src='breeds.png' height=100px width=100px>
-<img src='empty_breed_list.png' height=100px width=100px>
-<img src='breed_list.png' height=100px width=100px>
+<img src='breeds.png' >
+<img src='empty_breed_list.png' >
+<img src='breed_list.png' >
 
 ### Create A Model With A One To Many Relationship
 In the directory dogs/models.py, we'll create a Dog model that will have Breed as a Foreign Key.
