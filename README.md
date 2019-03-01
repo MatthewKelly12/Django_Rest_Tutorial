@@ -170,9 +170,17 @@ The server should now be running on port http://127.0.0.1:8000/. Click on the li
 
 ### Add Breeds of Dogs
 
-<img src='breeds.png' >
-<img src='empty_breed_list.png' >
-<img src='breed_list.png' >
+At the root of your api you'll see an html version of your api with a clickable url to get a list of breeds.
+<img src='breeds.png'>
+
+After clicking on the link for breeds, you'll see an empty list of breeds because we haven't added any. Add some breeds in the input section and click POST.
+<img src='empty_breed_list.png'>
+
+Now your breed list should look like this with a clickable url for each breed instance.
+<img src='breed_list.png'>
+
+Click on any instance and see the data.
+<img src='breed_instance.png'>
 
 ### Create A Model With A One To Many Relationship
 In the directory dogs/models.py, we'll create a Dog model that will have Breed as a Foreign Key.
