@@ -1,5 +1,8 @@
 # Getting Started With Django Rest Framework
 
+###	Description
+
+
 ###	Requirements
 Pip
 Python
@@ -432,3 +435,10 @@ From the command line, type the following code to run the server
 The server should now be running on port http://127.0.0.1:8000/. Click on the link and your Django Rest API should be up and running.
 
 ### Add Owners
+
+Now you'll see clickable url's to breeds, dogs, and owners.
+
+<img src='breeds_dogs_owners.png'>
+
+
+<img src='karma_pitbull.png'>
