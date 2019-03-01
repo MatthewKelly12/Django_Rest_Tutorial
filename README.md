@@ -440,5 +440,6 @@ Now you'll see clickable url's to breeds, dogs, and owners.
 
 <img src='breeds_dogs_owners.png'>
 
+Click on owners and you'll see an empty list. Now when you add an owner, you'll see a list of dogs to choose from. Hold down shift to select more than one dog.
 
-<img src='karma_pitbull.png'>
+<img src='karma_boomer.png'>
