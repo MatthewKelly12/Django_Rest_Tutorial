@@ -168,18 +168,22 @@ From the command line, type the following code to run the server
 
 The server should now be running on port http://127.0.0.1:8000/. Click on the link and your Django Rest API should be up and running.
 
-### Add Breeds of Dogs
+### Add Breeds
 
 At the root of your api you'll see an html version of your api with a clickable url to get a list of breeds.
+
 <img src='breeds.png'>
 
 After clicking on the link for breeds, you'll see an empty list of breeds because we haven't added any. Add some breeds in the input section and click POST.
+
 <img src='empty_breed_list.png'>
 
 Now your breed list should look like this with a clickable url for each breed instance.
+
 <img src='breed_list.png'>
 
 Click on any instance and see the data.
+
 <img src='breed_instance.png'>
 
 ### Create A Model With A One To Many Relationship
@@ -292,6 +296,15 @@ From the command line, type the following code to run the server
 The server should now be running on port http://127.0.0.1:8000/. Click on the link and your Django Rest API should be up and running.
 
 ### Add Dogs
+
+Now you'll see clickable url's to breeds and dogs.
+
+<img src='breed_and_dogs.png'>
+
+<img src='karma_pitbull.png'>
+
+<img src='dog_list.png'>
+
 ### Create A Model With A Many To Many Relationship
 
 In the directory dogs/models.py, we'll create an Owner model that will have a Many To Many relationship with Dogs. Yes, dogs can have many owners and many owners could own many dogs.
