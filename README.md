@@ -25,6 +25,8 @@ Django
 ### Migrate Existing Models
 	python manage.py migrate
 
+<img src="sql.png">
+
 ### Create The App
 	python manage.py startapp dogs
 
