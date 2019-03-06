@@ -16,6 +16,9 @@ Django
 ### Start Django Project
 	django-admin startproject dogs_api
 
+<img src="dog_files.png">
+
+
 ### Go Into Project Directory
 	cd dogs_api
 
