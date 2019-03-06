@@ -30,6 +30,10 @@ Django
 ### Create The App
 	python manage.py startapp dogs
 
+<img src="app.png">
+
+<img src="app_struc.png">
+
 ### Create Files For URL's and Serializers
 
 First we need to make files for the serializers and urls. From your command line go into the dogs directory.
