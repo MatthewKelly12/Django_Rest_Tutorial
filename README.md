@@ -1,11 +1,13 @@
 # Getting Started With Django Rest Framework
 
 ###	Description
-
+This README contains all the information for you to get started bulding a REST API with Django Rest Framework. This example will build a database for breeds, dogs, and owners. A foreign key will be used to represent breeds on the dog table and a many to many relationship between owners and dogs.
 
 ###	Requirements
 Pip
+
 Python
+
 Django
 
 ### Install Django Rest Framework
@@ -34,7 +36,7 @@ Create the serializers file and the urls file.
 	touch serializers.py urls.py
 
 ### Open In Text Editor
-To open in VS Code type the following in your command line.
+Open in your text editor or to open in VS Code type the following in your command line.
 
 	code .
 
@@ -78,7 +80,7 @@ In dogs_api/urls.py, you'll see the following code.
     	path('admin/', admin.site.urls),
 	]
 
-Now we need to include our path and import include from django.urls. We're already importing django.urls so we can just add a comma after path.
+Now we need to include our path and import include from django.urls. We're already importing django.urls so we can just add a comma after path and type include.
 
 	from django.urls import include	path, include
 
@@ -114,7 +116,7 @@ Create a model for Breed. The dogs/models.py should now contain the following co
 
 ### Create A Serializer For Your Model
 
-Now we need to import serializers, our model, and create a class serlializer from our model. In your text editor,copy the following code to your dog/serializer.py file.
+Now we need to import serializers, our model, and create a class serlializer from our model. In your text editor, add the following code to your dog/serializer.py file.
 
 	from rest_framework import serializers
 	from .models import Breed
@@ -129,8 +131,9 @@ We're using viewsets for this example so we need to import viewsets along with o
 
 	from django.shortcuts import render
 
-Copy the following code beneath
+Add the following code beneath so your dogs/views.py file contains the following code.
 
+	from django.shortcuts import render
 	from rest_framework import viewsets
 	from .models import Breed
 	from .serializers import BreedSerializer
@@ -142,7 +145,7 @@ Copy the following code beneath
 ### Create A URL And Router For The View
 
 Now we need to import our views, routers, path, and include.
-In your text editor, go to dogs/urls.py and copy the following code.
+In your text editor, go to dogs/urls.py and add the following code.
 
 	from django.urls import path, include
 	from . import views
@@ -156,7 +159,7 @@ In your text editor, go to dogs/urls.py and copy the following code.
 	]
 
 ### Make Migrations And Migrate Models
-From the command line, in the root directory copy the following code to make migrations with the model.
+From the command line, in the root directory type the following code to make migrations with the model.
 
 	python manage.py makemigrations
 
@@ -192,7 +195,7 @@ Click on any instance and see the data.
 ### Create A Model With A One To Many Relationship
 In the directory dogs/models.py, we'll create a Dog model that will have Breed as a Foreign Key.
 
-Copy the following code beneath your Breed model
+Add the following code beneath your Breed model
 
 	class Dog(models.Model):
     	name = models.CharField(max_length=50)
